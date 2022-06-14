@@ -1,12 +1,13 @@
 import React, { useState, useLayoutEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
 import * as loginService from "../services/LoginService"
 import { CheckBox } from '@rneui/themed';
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useSelector, useDispatch } from 'react-redux';
 import * as UserAction from '../services/actions/user.action'
+import facilitation from '../../assets/facilitation.png';
 
 
 export default function Login(props) {
@@ -60,6 +61,12 @@ export default function Login(props) {
 
     return (
         <View style={styles.container}>
+            <View >
+                <Image
+                style={styles.image}
+                    source={require('../../assets/facilitation.png')
+                    } />
+            </ View>
             <View style={styles.input}>
                 <TextInput
                     placeholder='e-mail'
@@ -134,5 +141,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#D8D8D8",
         borderRadius: "30px",
     },
-    
+    image:{
+        width: 300,
+        height: 200,
+    }
+
 });

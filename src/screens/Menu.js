@@ -64,12 +64,12 @@ export default function Menu(props) {
 
 
     navigation.setOptions({
-      title: user.email,
+      // title: user.email,
       headerTitleAlign: "center",
       headerTitleStyle: {
-        fontSize: 15
+        fontSize: 20,
       },
-      headerLeft: () => <Button title='Sobre' onPress={() => navigation.navigate("SobreAplication")} />,
+      // headerLeft: () => <Button title='Sobre' onPress={() => navigation.navigate("SobreAplication")} />,
       headerRight: () => <Button title='Sair' onPress={logoff} />
     })
 
@@ -118,6 +118,23 @@ export default function Menu(props) {
       <View style={{
         position: "absolute",
         top: "80%",
+        left: 50,
+        alignSelf: "center",
+        backgroundColor: "#D8D8D8",
+        borderRadius: "10px",
+        shadowColor: '#171717',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+
+      }}>
+        <Button title='Sobre' onPress={() => navigation.navigate("CadastroPet")} />
+      </View>
+
+      <View style={{
+        position: "absolute",
+        top: "80%",
+        width: 120,
         alignSelf: "center",
         backgroundColor: "white",
         borderRadius: "10px",
@@ -131,6 +148,22 @@ export default function Menu(props) {
       </View>
 
 
+      <View style={{
+        position: "absolute",
+        top: "80%",
+        right: 50,
+        alignSelf: "center",
+        backgroundColor: "#D8D8D8",
+        borderRadius: "10px",
+        shadowColor: '#171717',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+
+      }}>
+        <Button title='FAQ' onPress={() => navigation.navigate("CadastroPet")} />
+      </View>
+
     </View>
   )
 }
@@ -140,5 +173,5 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height
-  }
+  },
 })
