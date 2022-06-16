@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import * as loginService from "../services/LoginService"
 
 export default function CadastroUser(props) {
-
     const [nomeCompleto, setNomeCompleto] = useState("")
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
+    const [buttonState, setButtonState] = useState(false)
     const { navigation } = props
 
     const efetuarCadastro = async () => {
@@ -20,6 +20,15 @@ export default function CadastroUser(props) {
         }
     }
 
+    useEffect(() => {
+        // console.log("form.nomeEstabelecimento", form)
+        if (nomeCompleto.trim().length > 0 && email.trim().length > 0 &&
+            senha.trim().length > 0) {
+            setButtonState(false);
+        } else {
+            setButtonState(true);
+        }
+    }, [nomeCompleto, email, senha])
 
     return (
         <View style={styles.container}>
@@ -59,6 +68,7 @@ export default function CadastroUser(props) {
                     <Button
                         title='Cadastrar'
                         onPress={efetuarCadastro}
+                        disabled={buttonState}
                     />
                 </View>
             </View>
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 2,
         backgroundColor: "#D8D8D8",
-        borderRadius: "30px",
+        borderRadius: 30,
     }
 
 });

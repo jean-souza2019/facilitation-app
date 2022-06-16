@@ -1,16 +1,15 @@
 import { StyleSheet, Text, View, Button, Alert, Dimensions } from 'react-native'
 import React, { useLayoutEffect, useState, useEffect } from 'react'
 import * as loginService from '../services/LoginService'
-import * as petService from '../services/PetService'
 import * as Location from "expo-location"
 import MapView, { Marker } from 'react-native-maps'
 import { useSelector } from 'react-redux'
+import { buscaEstabelecimentos } from '../repository/estabelecimentosRepository'
 
 export default function Menu(props) {
-
   const user = useSelector(store => store.user)
   const { navigation } = props
-  const [pets, setPets] = useState([])
+  const [estabelecimentos, setEstabelecimentos] = useState([])
   const [location, setLocation] = useState({
     coords: {
       latitude: -28.2653961,
@@ -21,58 +20,47 @@ export default function Menu(props) {
   const myPosition = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
-      //setar uma msg de erro...
       return
     } else {
-      let myLocation = await Location.getCurrentPositionAsync({})
-      setLocation(myLocation)
+      let myLocation = await Location.getCurrentPositionAsync({});
+      setLocation(myLocation);
     }
 
   }
 
-  const buscarPets = async () => {
+  const buscaEstabelecimentosRepo = async () => {
     try {
-      let dados = await petService.getPets()
-      setPets(dados)
+      let dados = await buscaEstabelecimentos();
+      setEstabelecimentos(dados);
     } catch (error) {
-
     }
   }
 
 
 
   const logoff = async () => {
-
     try {
-      await loginService.logoff()
-      navigation.replace("Login")
+      await loginService.logoff();
+      navigation.replace("Login");
     } catch (error) {
-      Alert.alert(error)
+      Alert.alert(error);
     }
-
   }
 
-
   useEffect(() => {
-    myPosition()
-    buscarPets()
-
+    myPosition();
+    buscaEstabelecimentosRepo();
   }, [props])
 
 
   useLayoutEffect(() => {
-
-
     navigation.setOptions({
-      // title: user.email,
       headerTitleAlign: "center",
       headerTitleStyle: {
         fontSize: 20,
       },
-      // headerLeft: () => <Button title='Sobre' onPress={() => navigation.navigate("SobreAplication")} />,
       headerRight: () => <Button title='Sair' onPress={logoff} />
     })
-
   }, [])
 
 
@@ -100,17 +88,16 @@ export default function Menu(props) {
 
         />}
 
-        {pets.map((pet, key) => <Marker
-
+        {estabelecimentos.map((estabelecimento, key) => <Marker
           key={key}
           coordinate={{
-            latitude: pet.lat,
-            longitude: pet.lng
+            latitude: estabelecimento.lat,
+            longitude: estabelecimento.lng
           }}
-          title={pet.nome_pet}
-          icon={require("../../assets/position.png")}
-          onPress={() => Alert.alert(pet.nome_pet,
-            `Tutor: ${pet.nome_tutor}\nDescrição: ${pet.descricao}\nEndereço: ${pet.endereco}\nContato: ${pet.contato} `)}
+          title={estabelecimento.nomeEstabelecimento}
+          // icon={require("../../assets/position.png")}
+          onPress={() => Alert.alert(estabelecimento.nomeEstabelecimento,
+            `Tipo: ${estabelecimento.tipo}\nContato: ${estabelecimento.contato}\nEndereço: ${estabelecimento.endereco} `)}
 
         />)}
 
@@ -121,7 +108,7 @@ export default function Menu(props) {
         left: 50,
         alignSelf: "center",
         backgroundColor: "#D8D8D8",
-        borderRadius: "10px",
+        borderRadius: 10,
         shadowColor: '#171717',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,
@@ -137,14 +124,14 @@ export default function Menu(props) {
         width: 120,
         alignSelf: "center",
         backgroundColor: "white",
-        borderRadius: "10px",
+        borderRadius: 10,
         shadowColor: '#171717',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 2,
 
       }}>
-        <Button title='Todos' onPress={() => navigation.navigate("CadastroPet")} />
+        <Button title='Todos' onPress={() => navigation.navigate("ListagemEstabelecimentos")} />
       </View>
 
 
@@ -154,7 +141,7 @@ export default function Menu(props) {
         right: 50,
         alignSelf: "center",
         backgroundColor: "#D8D8D8",
-        borderRadius: "10px",
+        borderRadius: 10,
         shadowColor: '#171717',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,

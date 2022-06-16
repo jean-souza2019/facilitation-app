@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 2,
         backgroundColor: "#D8D8D8",
-        borderRadius: "30px",
+        borderRadius: 30,
     },
     image:{
         width: 300,

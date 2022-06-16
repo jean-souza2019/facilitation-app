@@ -5,10 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/screens/Login';
 import Menu from './src/screens/Menu';
 import CadastroUser from './src/screens/CadastroUser';
-import CadastroPet from './src/screens/CadastroPet';
+import CadastroEstabelecimento from './src/screens/CadastroEstabelecimento';
 import { Provider as StoreProvider } from 'react-redux';
 import { LogBox } from 'react-native';
 import store from './src/services/store'
+import ListagemEstabelecimentos from './src/screens/ListagemEstabelecimentos';
 
 LogBox.ignoreLogs([
   'AsyncStorage'
@@ -43,15 +44,17 @@ export default function App() {
             }
           />
           <Stack.Screen
-            name="CadastroPet"
-            component={CadastroPet}
+            name="ListagemEstabelecimentos"
+            component={ListagemEstabelecimentos}
             options={
-              {
-                title: "Registro de Pets Desaparecidos",
-                headerTitleStyle: {
-                  fontSize: 15
-                }
-              }
+              { title: "Estabelecimentos cadastrados" }
+            }
+          />
+          <Stack.Screen
+            name="CadastroEstabelecimento"
+            component={CadastroEstabelecimento}
+            options={
+              { title: "Cadastro de Estabelecimento" }
             }
           />
         </Stack.Navigator>
