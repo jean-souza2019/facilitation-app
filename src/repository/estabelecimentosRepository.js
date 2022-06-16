@@ -38,9 +38,7 @@ export const buscaEstabelecimentos = () => {
 }
 
 export const deletarEstabelecimento = (key) => {
-  console.log("Delete", key)
   return new Promise(async (resolve, reject) => {
-
     try {
       await deleteDoc(doc(db, "estabelecimentos", key))
       resolve()

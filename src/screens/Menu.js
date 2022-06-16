@@ -78,20 +78,29 @@ export default function Menu(props) {
             }
           }
           title={user.email}
-          icon={require("../../assets/my-location-icon.jpg")}
         />}
 
-        {estabelecimentos.map((estabelecimento, key) => <Marker
-          key={key}
-          coordinate={{
-            latitude: estabelecimento.lat,
-            longitude: estabelecimento.lng
-          }}
-          title={estabelecimento.nomeEstabelecimento}
-          // icon={require("../../assets/position.png")}
-          onPress={() => Alert.alert(estabelecimento.nomeEstabelecimento,
-            `Tipo: ${estabelecimento.tipo}\nContato: ${estabelecimento.contato}\nEndereço: ${estabelecimento.endereco} `)}
-        />)}
+        {estabelecimentos.map((estabelecimento, key) => {
+          // import LogoImg from `../../assets/iconsMaps/${estabelecimento.icon}.png`;
+          let iconUrl = `../../assets/iconsMaps/${estabelecimento.icon}.png`;
+          // const image = import(iconUrl)
+          console.log("iconUr", iconUrl);
+          // console.log("LogoImg", LogoImg);
+          // console.log("estabelecimento", estabelecimento.icon);
+          return <Marker
+            key={key}
+            coordinate={{
+              latitude: estabelecimento.lat,
+              longitude: estabelecimento.lng
+            }}
+            title={estabelecimento.nomeEstabelecimento}
+            // image={require(iconUrl)}
+            onPress={() => Alert.alert(estabelecimento.nomeEstabelecimento,
+              `Tipo: ${estabelecimento.tipo}\nContato: ${estabelecimento.contato}\nEndereço: ${estabelecimento.endereco} `)}
+          />
+        }
+
+        )}
 
       </MapView>
       <View style={{
@@ -148,5 +157,5 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height
-  },
+  }
 })

@@ -15,7 +15,6 @@ export const createUser = (email, senha) => {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                    console.log(errorCode)
                     if (errorCode === "auth/invalid-email")
                         reject("E-mail informado incorretamente!")
                     else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Image } from 'react-native';
 import { deletarEstabelecimento } from '../repository/estabelecimentosRepository';
 export default function Registro(props) {
     const data = props.dados;
@@ -50,6 +50,9 @@ export default function Registro(props) {
                     <Text style={styles.campo}>Contato:</Text>
                     <Text style={styles.campoField}>{data.contato}</Text>
                 </View>
+            </View>
+            <View style={styles.linha}>
+                {/* <Image source={ } /> */}
             </View>
             <View style={styles.linha}>
                 <View style={styles.coluna}>
