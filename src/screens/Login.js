@@ -1,17 +1,16 @@
 import React, { useState, useLayoutEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
-import * as loginService from "../services/LoginService"
 import { CheckBox } from '@rneui/themed';
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as UserAction from '../services/actions/user.action'
 import facilitation from '../../assets/facilitation.png';
+import { login } from '../repository/loginRepository';
 
 
 export default function Login(props) {
-
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
     const [lembreme, setLembreme] = useState(false);
@@ -34,11 +33,9 @@ export default function Login(props) {
     }, [])
 
     const efetuarLogin = async () => {
-
         try {
-            let user = await loginService.login(email, senha)
+            let user = await login(email, senha)
             dispatch(UserAction.setUser(user))
-
             navigation.replace("Menu")
         } catch (error) {
             Alert.alert("Erro ao efetuar Loging", error)
@@ -52,7 +49,6 @@ export default function Login(props) {
         if (!lembreme) {
             await AsyncStorage.setItem('email', email)
             await AsyncStorage.setItem("senha", senha)
-
         } else {
             await AsyncStorage.removeItem("email")
             await AsyncStorage.removeItem("senha")

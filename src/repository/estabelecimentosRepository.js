@@ -1,7 +1,6 @@
 import { collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore'
 import { searchByAddress } from "../services/LocationService"
-import db from "../back-end/firebaseConnect"
-
+import db from "../services/database/firebaseConnect"
 
 export const criarEstabelecimentos = (dados, uid) => {
   return new Promise(async (resolve, reject) => {
@@ -19,7 +18,6 @@ export const criarEstabelecimentos = (dados, uid) => {
     }
   })
 }
-
 
 export const buscaEstabelecimentos = () => {
   return new Promise(async (resolve, reject) => {

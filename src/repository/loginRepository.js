@@ -1,4 +1,3 @@
-import db from "../back-end/firebaseConnect";
 import {
     getAuth,
     signInWithEmailAndPassword,
@@ -7,10 +6,8 @@ import {
 } from 'firebase/auth'
 
 export const createUser = (email, senha) => {
-
     return new Promise((resolve, reject) => {
         try {
-
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, senha)
                 .then((userCredential) => {
@@ -32,11 +29,9 @@ export const createUser = (email, senha) => {
 }
 
 export const login = (email, senha) => {
-
     return new Promise((resolve, reject) => {
         try {
             const auth = getAuth()
-
             signInWithEmailAndPassword(auth, email, senha)
                 .then((data) => {
                     const user = data.user
@@ -55,7 +50,6 @@ export const login = (email, senha) => {
         }
     })
 }
-
 
 export const logoff = () => {
     return new Promise((resolve, reject) => {

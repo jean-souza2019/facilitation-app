@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
-import * as loginService from "../services/LoginService"
+import { createUser } from '../repository/loginRepository';
 
 export default function CadastroUser(props) {
     const [nomeCompleto, setNomeCompleto] = useState("")
@@ -12,7 +12,7 @@ export default function CadastroUser(props) {
 
     const efetuarCadastro = async () => {
         try {
-            let retorno = await loginService.createUser(email, senha)
+            let retorno = await createUser(email, senha)
             Alert.alert(retorno)
             navigation.navigate("Login")
         } catch (error) {
@@ -21,9 +21,8 @@ export default function CadastroUser(props) {
     }
 
     useEffect(() => {
-        // console.log("form.nomeEstabelecimento", form)
         if (nomeCompleto.trim().length > 0 && email.trim().length > 0 &&
-            senha.trim().length > 0) {
+            senha.trim().length >= 6) {
             setButtonState(false);
         } else {
             setButtonState(true);

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Button, Alert, Dimensions } from 'react-native'
 import React, { useLayoutEffect, useState, useEffect } from 'react'
-import * as loginService from '../services/LoginService'
 import * as Location from "expo-location"
 import MapView, { Marker } from 'react-native-maps'
 import { useSelector } from 'react-redux'
 import { buscaEstabelecimentos } from '../repository/estabelecimentosRepository'
+import { logoff as logoffUser } from '../repository/loginRepository'
 
 export default function Menu(props) {
   const user = useSelector(store => store.user)
@@ -25,7 +25,6 @@ export default function Menu(props) {
       let myLocation = await Location.getCurrentPositionAsync({});
       setLocation(myLocation);
     }
-
   }
 
   const buscaEstabelecimentosRepo = async () => {
@@ -36,11 +35,9 @@ export default function Menu(props) {
     }
   }
 
-
-
   const logoff = async () => {
     try {
-      await loginService.logoff();
+      await logoffUser();
       navigation.replace("Login");
     } catch (error) {
       Alert.alert(error);
@@ -52,7 +49,6 @@ export default function Menu(props) {
     buscaEstabelecimentosRepo();
   }, [props])
 
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitleAlign: "center",
@@ -62,7 +58,6 @@ export default function Menu(props) {
       headerRight: () => <Button title='Sair' onPress={logoff} />
     })
   }, [])
-
 
   return (
     <View>
@@ -74,7 +69,6 @@ export default function Menu(props) {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
-
       >
         {location && <Marker
           coordinate={
@@ -85,7 +79,6 @@ export default function Menu(props) {
           }
           title={user.email}
           icon={require("../../assets/my-location-icon.jpg")}
-
         />}
 
         {estabelecimentos.map((estabelecimento, key) => <Marker
@@ -98,7 +91,6 @@ export default function Menu(props) {
           // icon={require("../../assets/position.png")}
           onPress={() => Alert.alert(estabelecimento.nomeEstabelecimento,
             `Tipo: ${estabelecimento.tipo}\nContato: ${estabelecimento.contato}\nEndereço: ${estabelecimento.endereco} `)}
-
         />)}
 
       </MapView>
@@ -113,7 +105,6 @@ export default function Menu(props) {
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 2,
-
       }}>
         <Button title='Sobre' onPress={() => navigation.navigate("CadastroPet")} />
       </View>
@@ -134,7 +125,6 @@ export default function Menu(props) {
         <Button title='Todos' onPress={() => navigation.navigate("ListagemEstabelecimentos")} />
       </View>
 
-
       <View style={{
         position: "absolute",
         top: "80%",
@@ -146,7 +136,6 @@ export default function Menu(props) {
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 2,
-
       }}>
         <Button title='FAQ' onPress={() => navigation.navigate("CadastroPet")} />
       </View>
@@ -156,7 +145,6 @@ export default function Menu(props) {
 }
 
 const styles = StyleSheet.create({
-
   map: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height
