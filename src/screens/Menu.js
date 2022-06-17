@@ -5,6 +5,11 @@ import MapView, { Marker } from 'react-native-maps'
 import { useSelector } from 'react-redux'
 import { buscaEstabelecimentos } from '../repository/estabelecimentosRepository'
 import { logoff as logoffUser } from '../repository/loginRepository'
+import iconCombustivel from '../../assets/iconsMaps/iconCombustivel.png';
+import iconFastfood from '../../assets/iconsMaps/iconFastfood.png';
+import iconMarket from '../../assets/iconsMaps/iconMarket.png';
+import iconPet from '../../assets/iconsMaps/iconPet.png';
+import iconPharmaci from '../../assets/iconsMaps/iconPharmaci.png';
 
 export default function Menu(props) {
   const user = useSelector(store => store.user)
@@ -81,12 +86,6 @@ export default function Menu(props) {
         />}
 
         {estabelecimentos.map((estabelecimento, key) => {
-          // import LogoImg from `../../assets/iconsMaps/${estabelecimento.icon}.png`;
-          let iconUrl = `../../assets/iconsMaps/${estabelecimento.icon}.png`;
-          // const image = import(iconUrl)
-          console.log("iconUr", iconUrl);
-          // console.log("LogoImg", LogoImg);
-          // console.log("estabelecimento", estabelecimento.icon);
           return <Marker
             key={key}
             coordinate={{
@@ -94,7 +93,12 @@ export default function Menu(props) {
               longitude: estabelecimento.lng
             }}
             title={estabelecimento.nomeEstabelecimento}
-            // image={require(iconUrl)}
+            image={estabelecimento.icon == 'iconCombustivel' ? iconCombustivel :
+              estabelecimento.icon == 'iconFastfood' ? iconFastfood :
+                estabelecimento.icon == 'iconMarket' ? iconMarket :
+                  estabelecimento.icon == 'iconPet' ? iconPet :
+                    iconPharmaci
+            }
             onPress={() => Alert.alert(estabelecimento.nomeEstabelecimento,
               `Tipo: ${estabelecimento.tipo}\nContato: ${estabelecimento.contato}\nEndereço: ${estabelecimento.endereco} `)}
           />
