@@ -119,7 +119,7 @@ export default function Menu(props) {
         shadowOpacity: 0.3,
         shadowRadius: 2,
       }}>
-        <Button title='Sobre' onPress={() => navigation.navigate("CadastroPet")} />
+        <Button title='Sobre' onPress={() => navigation.navigate("Sobre")} />
       </View>
 
       <View style={{
@@ -150,7 +150,7 @@ export default function Menu(props) {
         shadowOpacity: 0.3,
         shadowRadius: 2,
       }}>
-        <Button title='FAQ' onPress={() => navigation.navigate("CadastroPet")} />
+        <Button title='FAQ' onPress={() => navigation.navigate("FAQ")} />
       </View>
 
     </View>

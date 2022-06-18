@@ -5,7 +5,7 @@ import { CheckBox } from '@rneui/themed';
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useDispatch } from 'react-redux';
-import * as UserAction from '../services/actions/user.action'
+import * as UserAction from '../services/redux/actions/user.action'
 import facilitation from '../../assets/facilitation.png';
 import { login } from '../repository/loginRepository';
 

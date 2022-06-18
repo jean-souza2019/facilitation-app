@@ -12,7 +12,7 @@ export default function CadastroUser(props) {
 
     const efetuarCadastro = async () => {
         try {
-            let retorno = await createUser(email, senha)
+            let retorno = await createUser(nomeCompleto, email, senha)
             Alert.alert(retorno)
             navigation.navigate("Login")
         } catch (error) {
