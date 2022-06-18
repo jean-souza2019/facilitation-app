@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         margin: 5,
         width: "99%",
         padding: 3,
-        borderRadius: 5
+        borderRadius: 5,
     },
     linha: {
         flexDirection: "row"
