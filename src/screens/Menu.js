@@ -69,7 +69,7 @@ export default function Menu(props) {
       headerTitleStyle: {
         fontSize: 15
       },
-      headerLeft: () => <Button title='Sobre' onPress={() => navigation.navigate("SobreAplication")} />,
+      headerLeft: () => <Button title='Sobre' onPress={() => navigation.navigate("Sobre")} />,
       headerRight: () => <Button title='Sair' onPress={logoff} />
     })
 
@@ -120,7 +120,7 @@ export default function Menu(props) {
         top: "80%",
         alignSelf: "center",
         backgroundColor: "white",
-        borderRadius: "10px",
+        borderRadius: 10,
         shadowColor: '#171717',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,
@@ -128,6 +128,7 @@ export default function Menu(props) {
 
       }}>
         <Button title='Todos' onPress={() => navigation.navigate("CadastroPet")} />
+        <Button title='FAQ' onPress={() => navigation.navigate('FAQ')}/>
       </View>
 
 

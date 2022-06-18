@@ -113,13 +113,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    }, input: {
+    }, 
+    input: {
         borderWidth: 1,
         borderColor: "gray",
         margin: 5,
         width: "60%",
         padding: 3,
-        borderRadius: 5
+        borderRadius: 5,
     },
     linha: {
         flexDirection: "row",
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 2,
         backgroundColor: "#D8D8D8",
-        borderRadius: "30px",
+        borderRadius: 30,
     },
     
 });
