@@ -96,7 +96,7 @@ export default function CadastroEstabelecimento(props) {
                         status={checked === 'iconCombustivel' ? 'checked' : 'unchecked'}
                         onPress={() => setChecked('iconCombustivel')}
                     />
-                    <Text style={{ textAlign: "center" }}>Farmácia</Text>
+                    <Text style={{ textAlign: "center" }}>Posto Combustível</Text>
                 </View>
                 <View style={styles.containerOption}>
                     <Image source={require("../../assets/iconsMaps/iconFastfood.png")} />
@@ -125,7 +125,7 @@ export default function CadastroEstabelecimento(props) {
                         status={checked === 'iconMarket' ? 'checked' : 'unchecked'}
                         onPress={() => setChecked('iconMarket')}
                     />
-                    <Text style={{ textAlign: "center" }}>Mercado</Text>
+                    <Text style={{ textAlign: "center" }}>Estabelecimento</Text>
                 </View>
 
                 <View style={styles.containerOption}>

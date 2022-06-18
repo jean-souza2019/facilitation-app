@@ -4,13 +4,23 @@ import {
     createUserWithEmailAndPassword,
     signOut
 } from 'firebase/auth'
+import { addDoc, collection } from 'firebase/firestore';
+import db from "../services/database/firebaseConnect"
 
-export const createUser = (email, senha) => {
+
+export const createUser = (nomeCompleto, email, senha) => {
     return new Promise((resolve, reject) => {
         try {
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, senha)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
+                    let dados = {
+                        nomeCompleto,
+                        email,
+                        senha
+                    }
+
+                    await addDoc(collection(db, "usuarios"), dados)
                     resolve("Usuário criado com sucesso!")
                 })
                 .catch((error) => {
@@ -18,6 +28,7 @@ export const createUser = (email, senha) => {
                     if (errorCode === "auth/invalid-email")
                         reject("E-mail informado incorretamente!")
                     else {
+                        console.log("error",error)
                         reject("Verifique suas credenciais (senha, email) e tente novamente!")
                     }
                 });

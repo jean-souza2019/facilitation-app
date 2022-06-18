@@ -1,15 +1,16 @@
 import * as React from 'react'
+import { LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { Provider as StoreProvider } from 'react-redux';
+import store from './src/services/redux/store'
 import Login from './src/screens/Login';
 import Menu from './src/screens/Menu';
-import CadastroUser from './src/screens/CadastroUser';
-import CadastroEstabelecimento from './src/screens/CadastroEstabelecimento';
-import { Provider as StoreProvider } from 'react-redux';
-import { LogBox } from 'react-native';
-import store from './src/services/store'
 import ListagemEstabelecimentos from './src/screens/ListagemEstabelecimentos';
+import CadastroEstabelecimento from './src/screens/CadastroEstabelecimento';
+import CadastroUser from './src/screens/CadastroUser';
+import Sobre from './src/screens/Sobre';
+import FAQ from './src/screens/FAQ';
 
 LogBox.ignoreLogs([
   'AsyncStorage'
@@ -55,6 +56,20 @@ export default function App() {
             component={CadastroEstabelecimento}
             options={
               { title: "Cadastro de Estabelecimento" }
+            }
+          />
+          <Stack.Screen
+            name="Sobre"
+            component={Sobre}
+            options={
+              { title: "Sobre" }
+            }
+          />
+          <Stack.Screen
+            name="FAQ"
+            component={FAQ}
+            options={
+              { title: 'FAQ' }
             }
           />
         </Stack.Navigator>
