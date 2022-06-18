@@ -33,7 +33,7 @@ export default function App() {
             name="Menu"
             component={Menu}
             options={
-              { title: "Menu" }
+              { title: "Bem Vindo" }
             }
           />
           <Stack.Screen
