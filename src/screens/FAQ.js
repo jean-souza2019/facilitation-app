@@ -43,6 +43,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 5,
         fontSize: 15,
-        // fontWeight: 'bold',
     },
 })
