@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         padding: 25,
+        height: 300
     },
     titulo: {
         color: 'lightblue',

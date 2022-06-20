@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         width: 120
     },
     campoField: {
-        width: 300
+        width: 260
     },
 
 })

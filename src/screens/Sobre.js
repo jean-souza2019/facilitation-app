@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         padding: 25,
         margin: 3,
         width: 300,
-        height: 250, 
+        height: 350, 
         alignItems: 'center', 
     },
     imagens: {

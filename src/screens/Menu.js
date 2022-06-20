@@ -82,7 +82,8 @@ export default function Menu(props) {
               longitude: location.coords.longitude
             }
           }
-          title={user.email}
+          // title={user.email}
+          title={`Você está aqui - ${user.email}`}
         />}
 
         {estabelecimentos.map((estabelecimento, key) => {
