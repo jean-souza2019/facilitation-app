@@ -1,14 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-<<<<<<< HEAD
-export default function FAQ(){
-    return(
-        <View style={styles.container}>
-            <Text style={styles.titulo}>FAQ</Text>
-            <Text style={styles.texto}>Funcionalidades do App</Text>
-            <Text style={styles.texto2}>Este App foi criado com o intuíto de facilitar a localização de estabelecimentos próximos que os usuários desejem encontrar</Text>
-=======
+
 export default function FAQ() {
     return (
         <View style={styles.container}>
@@ -23,7 +16,6 @@ export default function FAQ() {
             <Text style={styles.texto2}>Components: Component é utilizado para montar elementos de flatlist onde o mesmo recebe via props os dados.</Text>
             <Text style={styles.texto2}>Repositorys: Onde centralizamos todas as conexões/querys com o banco de dados.</Text>
             <Text style={styles.texto2}>Assets: Onde centralizamos todas as imagens e icones do APP.</Text>
->>>>>>> 4fcd65129e8f18bda8ca2b0c5cdaaebd69d59d83
         </View>
     )
 }
@@ -33,10 +25,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         padding: 25,
-<<<<<<< HEAD
-=======
         height: 300
->>>>>>> 4fcd65129e8f18bda8ca2b0c5cdaaebd69d59d83
     },
     titulo: {
         color: 'lightblue',
@@ -55,10 +44,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 5,
         fontSize: 15,
-<<<<<<< HEAD
-        fontWeight: 'bold',
-=======
-        // fontWeight: 'bold',
->>>>>>> 4fcd65129e8f18bda8ca2b0c5cdaaebd69d59d83
     },
 })
