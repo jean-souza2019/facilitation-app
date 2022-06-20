@@ -60,10 +60,6 @@ export default function Menu(props) {
       headerTitleStyle: {
         fontSize: 20,
       },
-<<<<<<< HEAD
-      headerLeft: () => <Button title='Sobre' onPress={() => navigation.navigate("Sobre")} />,
-=======
->>>>>>> 4fcd65129e8f18bda8ca2b0c5cdaaebd69d59d83
       headerRight: () => <Button title='Sair' onPress={logoff} />
     })
   }, [])
@@ -140,12 +136,7 @@ export default function Menu(props) {
         shadowRadius: 2,
 
       }}>
-<<<<<<< HEAD
-        <Button title='Todos' onPress={() => navigation.navigate("CadastroPet")} />
-        <Button title='FAQ' onPress={() => navigation.navigate('FAQ')}/>
-=======
         <Button title='Todos' onPress={() => navigation.navigate("ListagemEstabelecimentos")} />
->>>>>>> 4fcd65129e8f18bda8ca2b0c5cdaaebd69d59d83
       </View>
 
       <View style={{
