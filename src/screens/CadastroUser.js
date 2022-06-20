@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
-import * as loginService from "../services/LoginService"
+import { createUser } from '../repository/loginRepository';
 
 export default function CadastroUser(props) {
-
     const [nomeCompleto, setNomeCompleto] = useState("")
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
+    const [buttonState, setButtonState] = useState(false)
     const { navigation } = props
 
     const efetuarCadastro = async () => {
         try {
-            let retorno = await loginService.createUser(email, senha)
+            let retorno = await createUser(nomeCompleto, email, senha)
             Alert.alert(retorno)
             navigation.navigate("Login")
         } catch (error) {
@@ -20,6 +20,14 @@ export default function CadastroUser(props) {
         }
     }
 
+    useEffect(() => {
+        if (nomeCompleto.trim().length > 0 && email.trim().length > 0 &&
+            senha.trim().length >= 6) {
+            setButtonState(false);
+        } else {
+            setButtonState(true);
+        }
+    }, [nomeCompleto, email, senha])
 
     return (
         <View style={styles.container}>
@@ -59,6 +67,7 @@ export default function CadastroUser(props) {
                     <Button
                         title='Cadastrar'
                         onPress={efetuarCadastro}
+                        disabled={buttonState}
                     />
                 </View>
             </View>

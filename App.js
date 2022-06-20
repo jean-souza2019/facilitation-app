@@ -1,14 +1,21 @@
 import * as React from 'react'
+import { LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { Provider as StoreProvider } from 'react-redux';
+import store from './src/services/redux/store'
 import Login from './src/screens/Login';
 import Menu from './src/screens/Menu';
+import ListagemEstabelecimentos from './src/screens/ListagemEstabelecimentos';
+import CadastroEstabelecimento from './src/screens/CadastroEstabelecimento';
 import CadastroUser from './src/screens/CadastroUser';
+<<<<<<< HEAD
 import CadastroPet from './src/screens/CadastroPet';
 import { Provider as StoreProvider } from 'react-redux';
 import { LogBox } from 'react-native';
 import store from './src/services/store'
+=======
+>>>>>>> 4fcd65129e8f18bda8ca2b0c5cdaaebd69d59d83
 import Sobre from './src/screens/Sobre';
 import FAQ from './src/screens/FAQ';
 
@@ -34,7 +41,7 @@ export default function App() {
             name="Menu"
             component={Menu}
             options={
-              { title: "Menu" }
+              { title: "Bem Vindo" }
             }
           />
           <Stack.Screen
@@ -45,15 +52,31 @@ export default function App() {
             }
           />
           <Stack.Screen
-            name="CadastroPet"
-            component={CadastroPet}
+            name="ListagemEstabelecimentos"
+            component={ListagemEstabelecimentos}
             options={
-              {
-                title: "Registro de Pets Desaparecidos",
-                headerTitleStyle: {
-                  fontSize: 15
-                }
-              }
+              { title: "Estabelecimentos cadastrados" }
+            }
+          />
+          <Stack.Screen
+            name="CadastroEstabelecimento"
+            component={CadastroEstabelecimento}
+            options={
+              { title: "Cadastro de Estabelecimento" }
+            }
+          />
+          <Stack.Screen
+            name="Sobre"
+            component={Sobre}
+            options={
+              { title: "Sobre" }
+            }
+          />
+          <Stack.Screen
+            name="FAQ"
+            component={FAQ}
+            options={
+              { title: 'FAQ' }
             }
           />
           <Stack.Screen

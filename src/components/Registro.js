@@ -1,31 +1,27 @@
-import { StyleSheet, Text, View, Button, Alert } from 'react-native'
-import React from 'react'
-import * as petService from '../services/PetService'
+import React from 'react';
+import { StyleSheet, Text, View, Button, Alert, Image } from 'react-native';
+import { deletarEstabelecimento } from '../repository/estabelecimentosRepository';
 export default function Registro(props) {
+    const data = props.dados;
 
-    const data = props.dados
-
-    const excluirPet = () => {
-
-
-        Alert.alert("Deseja Excluir:", "Esses dados serão apagados para sempre!", [
+    const excluirEstabelecimento = () => {
+        Alert.alert("Deletar", "Esses dados serão apagados para sempre, deseja prosseguir?", [
             {
-                text: "Cancel",
-                style: "cancel"
+                text: "Não",
+                style: "cancelar"
             },
             {
-                text: "OK", onPress: async () => {
+                text: "Sim", onPress: async () => {
                     try {
-                        await petService.deletePet(data.key)
-                        Alert.alert("Dados Excluídos com Sucesso")
-                        props.navigation.navigate("Menu", { atualizar: true })
+                        await deletarEstabelecimento(data.key);
+                        Alert.alert("Registro excluido com sucesso");
+                        props.navigation.navigate("Menu", { atualizar: true });
                     } catch (error) {
-                        Alert.alert("Você não possui permissão para excluir esse registro!")
+                        Alert.alert("Você não possui permissão para excluir esse registro!");
                     }
                 }
             }
         ])
-
     }
 
 
@@ -33,15 +29,30 @@ export default function Registro(props) {
         <View style={styles.container}>
             <View style={styles.linha}>
                 <View style={styles.coluna}>
-                    <Text style={styles.campo}>Nome do Pet:</Text>
-                    <Text>{data.nome_pet}</Text>
+                    <Text style={styles.campo}>Estabelecimento: </Text>
+                    <Text style={styles.campoField}>{data.nomeEstabelecimento}</Text>
+                </View>
+            </View>
+            <View style={styles.linha}>
+                <View style={styles.coluna}>
+                    <Text style={styles.campo}>Tipo:</Text>
+                    <Text style={styles.campoField}>{data.tipo}</Text>
                 </View>
             </View>
             <View style={styles.linha}>
                 <View style={styles.coluna}>
                     <Text style={styles.campo}>Endereço:</Text>
-                    <Text>{data.endereco}</Text>
+                    <Text style={styles.campoField}>{data.endereco}</Text>
                 </View>
+            </View>
+            <View style={styles.linha}>
+                <View style={styles.coluna}>
+                    <Text style={styles.campo}>Contato:</Text>
+                    <Text style={styles.campoField}>{data.contato}</Text>
+                </View>
+            </View>
+            <View style={styles.linha}>
+                {/* <Image source={ } /> */}
             </View>
             <View style={styles.linha}>
                 <View style={styles.coluna}>
@@ -49,7 +60,11 @@ export default function Registro(props) {
                 <View style={styles.coluna}>
                 </View>
                 <View style={styles.coluna}>
-                    <Button title='Excluir' color={'red'} onPress={excluirPet} />
+                </View>
+                <View style={styles.coluna}>
+                </View>
+                <View style={styles.coluna}>
+                    <Button title='Deletar' color={'red'} onPress={excluirEstabelecimento} />
                 </View>
             </View>
         </View >
@@ -57,6 +72,7 @@ export default function Registro(props) {
 }
 
 const styles = StyleSheet.create({
+    button: { borderRadius: 10 },
     container: {
         padding: 10,
         borderWidth: 1,
@@ -72,7 +88,10 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     campo: {
-        width: 90
-    }
+        width: 120
+    },
+    campoField: {
+        width: 260
+    },
 
 })

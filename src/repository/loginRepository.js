@@ -1,27 +1,34 @@
-import db from "../back-end/firebaseConnect";
 import {
     getAuth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signOut
 } from 'firebase/auth'
+import { addDoc, collection } from 'firebase/firestore';
+import db from "../services/database/firebaseConnect"
 
-export const createUser = (email, senha) => {
 
+export const createUser = (nomeCompleto, email, senha) => {
     return new Promise((resolve, reject) => {
         try {
-
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, senha)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
+                    let dados = {
+                        nomeCompleto,
+                        email,
+                        senha
+                    }
+
+                    await addDoc(collection(db, "usuarios"), dados)
                     resolve("Usuário criado com sucesso!")
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                    console.log(errorCode)
                     if (errorCode === "auth/invalid-email")
                         reject("E-mail informado incorretamente!")
                     else {
+                        console.log("error",error)
                         reject("Verifique suas credenciais (senha, email) e tente novamente!")
                     }
                 });
@@ -32,11 +39,9 @@ export const createUser = (email, senha) => {
 }
 
 export const login = (email, senha) => {
-
     return new Promise((resolve, reject) => {
         try {
             const auth = getAuth()
-
             signInWithEmailAndPassword(auth, email, senha)
                 .then((data) => {
                     const user = data.user
@@ -55,7 +60,6 @@ export const login = (email, senha) => {
         }
     })
 }
-
 
 export const logoff = () => {
     return new Promise((resolve, reject) => {
