@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
         width: "60%",
         padding: 3,
         borderRadius: 5,
-
         alignSelf: "center",
     },
     linha: {
